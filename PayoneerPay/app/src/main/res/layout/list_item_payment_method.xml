@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <data>
+
+        <variable
+            name="paymentMethod"
+            type="com.williamsimon.android.payoneerpay.domain.ApplicableNetwork" />
+
+        <variable
+            name="clickListener"
+            type="com.williamsimon.android.payoneerpay.paymentmethods.PaymentMethodListener"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="@{() -> clickListener.onClick(paymentMethod)}">
+
+        <ImageView
+            android:id="@+id/paymentMethodImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:contentDescription="@string/payment_method_image"
+            android:paddingBottom="@dimen/small_padding"
+            app:imageApplicableNetwork="@{paymentMethod}"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toStartOf="@+id/labelText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelText"
+            style="@style/TextAppearance.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:text="@{paymentMethod.label}"
+            app:layout_constraintBottom_toBottomOf="@+id/paymentMethodImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="0.75"
+            app:layout_constraintStart_toEndOf="@+id/paymentMethodImage"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
